@@ -1,5 +1,0 @@
-What is Alembic?
-alembic init <folder name>  --> Initializes a new, generic environment
-alembic revision -m <message> --> Create a new revision of the environment
-alembic upgrade <revision #> --> Run out upgrade migration to our database
-alembic downgrade -1 --> Run our downgrade migration to our database

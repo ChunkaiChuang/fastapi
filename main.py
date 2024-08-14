@@ -1,18 +1,16 @@
-from fastapi import FastAPI, Depends, Path, status, HTTPException
+from fastapi import FastAPI
 import models
 from database import engine
-from routers import auth, todos, admin, users
+from routers import auth, todos
+from fastapi.staticfiles import StaticFiles
+
 
 app = FastAPI()
 
 models.Base.metadata.create_all(bind=engine)
 
+# 將 static 目錄掛載到 /static 路徑
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
 app.include_router(auth.router)
 app.include_router(todos.router)
-app.include_router(admin.router)
-app.include_router(users.router)
-
-# create database command: uvicorn main:app --reload
-# pip3 install sqlalchemy
-# sqlite3 todosapp.db 進入db
-
